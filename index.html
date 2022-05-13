@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- How To Make Working Contact Form With JavaScript | Receive Form Data On Email
+https://www.youtube.com/watch?v=sGQSz22U8VM <-> #Easy Tutorials 12. des. 2021 -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form to eMail w/jS | #easyTutorials asSeenOnYTube</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- call on sendEmail func under -->
+      <form onsubmit="sendEmail(), reset(); return false;">
+        <h3>Get in Touch</h3>
+        <input type="text" id="name" placeholder="Name here" required />
+        <input type="email" id="email" placeholder="eMail here" required />
+        <input type="text" id="phone" placeholder="Phone no. here" required />
+        <textarea id="message" rows="4" placeholder="How can help ?"></textarea>
+        <button type="submit">submit</button>
+      </form>
+    </div>
+    <!-- from external jS cdn -->
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+      // function under
+      // or use SMTP SecureToken to enCrypt SMTP Creds
+      // SecureToken : "C973D7AD-F097-4B95-91F4-40ABC5567812",
+      // when using secureToking, then remove, host/usern/pas info bellow
+      function sendEmail() {
+        Email.send({
+          Host: "smtp.elasticemail.com or smtp.yourisp/gMail.com here for training purpase",
+          Username: "eMailusernameCred",
+          Password: "+passwordCred",
+          To: "them@website.com",
+          From: document.getElementById("email").value,
+          Subject: "New Contact From Enquiry",
+          Body:
+            "Name: " +
+            document.getElementById("name").value +
+            "<br> Email: " +
+            document.getElementById("email").value +
+            "<br> Phone no: " +
+            document.getElementById("phone").value +
+            "<br> Message: " +
+            document.getElementById("message").value,
+        }).then((message) => alert("Message Sent Succesfully"));
+      }
+    </script>
+  </body>
+</html>
